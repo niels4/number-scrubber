@@ -1,0 +1,49 @@
+{
+  "name": "number-scrubber",
+  "version": "1.0.0",
+  "description": "An LSP server that lets you use the mouse drag action to update numbers in your text editor. Plugins available for neovim and vscode. Works great alongside websocket-text-relay.",
+  "bin": {
+    "number-scrubber": "./start.js"
+  },
+  "scripts": {
+    "format": "prettier src --write",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "test": "npm run lint && vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "type": "module",
+  "main": "./src/NumberScrubber.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/niels4/number-scrubber.git"
+  },
+  "keywords": [
+    "JSON-RPC",
+    "LSP",
+    "server",
+    "neovim",
+    "vscode",
+    "mouse",
+    "number",
+    "scrubber"
+  ],
+  "author": "Niels Nielsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niels4/number-scrubber/issues"
+  },
+  "homepage": "https://github.com/niels4/number-scrubber",
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.33.0",
+    "globals": "^16.3.0",
+    "prettier": "3.6.2",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "json-rpc-interface": "^1.0.1"
+  }
+}
