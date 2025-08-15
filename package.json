@@ -44,6 +44,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "json-rpc-interface": "^1.0.1"
+    "json-rpc-interface": "^1.0.1",
+    "robotjs": "^0.6.0"
   }
 }

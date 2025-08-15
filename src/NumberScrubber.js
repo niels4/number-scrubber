@@ -1,4 +1,5 @@
 import JsonRpcInterface from "json-rpc-interface"
+import { createMouseHandlers } from "./mouseHandlers.js"
 
 const lspInitializeResponse = {
   serverInfo: {
@@ -9,31 +10,20 @@ const lspInitializeResponse = {
 }
 
 export const startLanguageServer = (options = {}) => {
-  console.error("starting language server")
   const { inputStream: inputStreamParam, outputStream: outputStreamParam } = options
   const outputStream = outputStreamParam || process.stdout
   const inputStream = inputStreamParam || process.stdin
 
   const jsonRpc = new JsonRpcInterface({ inputStream, outputStream })
+  const { onDragStart, onDragEnd } = createMouseHandlers(jsonRpc)
 
-  jsonRpc.onRequest("initialize", () => {
-    return lspInitializeResponse
-  })
+  jsonRpc.onRequest("initialize", () => lspInitializeResponse)
 
-  jsonRpc.onRequest("numberScrubber/dragStart", ({ file, line, lineNum, colNum }) => {
-    console.error("started dragging yo")
-    return { scrubStarted: true }
-  })
+  jsonRpc.onRequest("numberScrubber/dragStart", onDragStart)
 
-  jsonRpc.onNotification("numberScrubber/dragEnd", ({ file, line, lineNum, colNum }) => {
-    console.error("ended dragging")
-  })
+  jsonRpc.onNotification("numberScrubber/dragEnd", onDragEnd)
 
-  jsonRpc.onRequest("shutdown", () => {
-    return null
-  })
+  jsonRpc.onRequest("shutdown", () => null)
 
-  jsonRpc.onNotification("exit", () => {
-    process.exit(0)
-  })
+  jsonRpc.onNotification("exit", () => process.exit(0))
 }
