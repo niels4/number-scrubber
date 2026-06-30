@@ -32,8 +32,8 @@ export const getNumberInfoAtIndex = (line, index) => {
     return null
   }
 
-  let decimalIndex = numberStr.indexOf(".")
-  let decimalPlaces = decimalIndex < 0 ? 0 : numberStr.length - 1 - decimalIndex
+  const decimalIndex = numberStr.indexOf(".")
+  const decimalPlaces = decimalIndex < 0 ? 0 : numberStr.length - 1 - decimalIndex
   const number = Number.parseFloat(numberStr)
   return { number, numberStr, decimalPlaces, startIndex }
 }

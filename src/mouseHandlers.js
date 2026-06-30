@@ -20,7 +20,7 @@ export const createMouseHandlers = (jsonRpc) => {
     }
 
     const { decimalPlaces, startIndex } = numberInfo
-    const diffScaler = scrubSpeed / Math.pow(10, decimalPlaces)
+    const diffScaler = scrubSpeed / 10 ** decimalPlaces
     let currentValue = numberInfo.number
     let oldStr = numberInfo.numberStr
     const startPos = robot.getMousePos()
